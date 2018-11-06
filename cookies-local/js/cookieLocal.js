@@ -1,61 +1,63 @@
+
+	const date = new Date;
+	date.setDate(date.getDate() + 1);
+	document.cookie = "User = Yura;"
+	document.cookie = "Gender = Male;"
+	document.cookie = "City = Chernihiv;"
+	document.cookie = "Date = " + date;
+	document.cookie = "Company = Andersen;"
+	
+	
+	
+
 function cookiesToLocalStorage(){
 
-let	date = new Date;
-date.setDate(date.getDate() + 1);
-document.cookie = "User = Yura;"
-document.cookie = "City = Chernihiv;"
-document.cookie = "Date = " + date;
-
-let cookies = {};
-let cookieStr = document.cookie;
+    const cookies = {};
+	const cookieStr = document.cookie;
 
 	
-let cookieSplit = cookieStr.split('; ');
-for(let i = 0; i < cookieSplit.length; i++ ){
-	let cookieSingle = cookieSplit[i];
-	let symbol = cookieSingle.indexOf("=");
-	let nameCookie = cookieSingle.substring(0,symbol);
-	let valueCookie = cookieSingle.substring(symbol+1);
-	valueCookie = decodeURIComponent(valueCookie);
-	let result = cookies[nameCookie] = valueCookie;
-	console.log(result);
-	
-} 
+	let cookieSplit = cookieStr.split('; ');
+	for(let i = 0; i < cookieSplit.length; i++ ){
+		let cookieSingle = cookieSplit[i];
+		let symbol = cookieSingle.indexOf("=");
+		let keyCookie = cookieSingle.substring(0,symbol);
+		let valueCookie = cookieSingle.substring(symbol+1);
+		valueCookie = decodeURIComponent(valueCookie);
+		cookies[keyCookie] = valueCookie;
+		localStorage.setItem(keyCookie,valueCookie);
+		if(localStorage.getItem(keyCookie) !== undefined && localStorage.getItem(keyCookie) !== null){
+			localStorage.setItem(keyCookie,valueCookie);
+		}
 
-localStorage.setItem("BioInfo",JSON.stringify(cookies)); // Получил в LocalStorage
 
-return cookies;
+	}
+ 
+
+	return cookies;
 
 }
-
 
 cookiesToLocalStorage();
 
 
 
 function localStorageToCookies(){
-
-localStorage.setItem('Name','Yura');
-localStorage.setItem('Age',23);
-
-// Пример
-let productPrice = {
-	apple : 10 + ' грн',
-	bread : 40 + ' грн',
-	meat : 90 + ' грн',
-	fish : 45 + ' грн'
-};
-
-localStorage.setItem("ProductPrice", JSON.stringify(productPrice));
-let savedPrice = JSON.parse(localStorage.getItem("ProductPrice"));
-console.log(savedPrice);
-
-let localToString = JSON.parse(localStorage.getItem("BioInfo"));
-console.log(localToString);
-
-
+	const len = localStorage.length;
+	for(let i = 0 ; i < len; i++){
+		const key = localStorage.key(i);
+		const name = localStorage.getItem(key);
+		document.cookie = `${key} = ${name}`;
+		if(key !== "" && name !== ""){
+			document.cookie = `${key} = ${name}`;
+		}
+	}
 }
 
 localStorageToCookies();
+
+
+
+console.log(document.cookie);
+
 
 
