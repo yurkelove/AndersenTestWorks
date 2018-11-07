@@ -9,6 +9,7 @@
 	
 	
 	
+	
 
 function cookiesToLocalStorage(){
 
@@ -48,6 +49,9 @@ function localStorageToCookies(){
 		const name = localStorage.getItem(key);
 		document.cookie = `${key} = ${name}`;
 		if(key !== "" && name !== ""){
+			document.cookie = `${key} = ${name}`;
+		}
+		if(localStorage.getItem(key) !== undefined && localStorage.getItem(key) !== null && localStorage.getItem(key) !== ""){
 			document.cookie = `${key} = ${name}`;
 		}
 	}
