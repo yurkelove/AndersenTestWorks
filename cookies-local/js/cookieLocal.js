@@ -13,28 +13,23 @@
 
 function cookiesToLocalStorage(){
 
-    const cookies = {};
 	const cookieStr = document.cookie;
 
 	
-	let cookieSplit = cookieStr.split('; ');
+	const cookieSplit = cookieStr.split('; ');
 	for(let i = 0; i < cookieSplit.length; i++ ){
-		let cookieSingle = cookieSplit[i];
+		const cookieSingle = cookieSplit[i];
 		let symbol = cookieSingle.indexOf("=");
 		let keyCookie = cookieSingle.substring(0,symbol);
 		let valueCookie = cookieSingle.substring(symbol+1);
 		valueCookie = decodeURIComponent(valueCookie);
-		cookies[keyCookie] = valueCookie;
-		localStorage.setItem(keyCookie,valueCookie);
+		// localStorage.setItem(keyCookie,valueCookie);
 		if(localStorage.getItem(keyCookie) !== undefined && localStorage.getItem(keyCookie) !== null){
 			localStorage.setItem(keyCookie,valueCookie);
 		}
 
 
 	}
- 
-
-	return cookies;
 
 }
 
@@ -42,26 +37,25 @@ cookiesToLocalStorage();
 
 
 
+function getCookie(name) {
+	var matches = document.cookie.match(new RegExp(
+	  "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+	));
+	return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+
 function localStorageToCookies(){
 	const len = localStorage.length;
 	for(let i = 0 ; i < len; i++){
 		const key = localStorage.key(i);
 		const name = localStorage.getItem(key);
+		if (getCookie(key) !== undefined) {
 		document.cookie = `${key} = ${name}`;
-		if(key !== "" && name !== ""){
-			document.cookie = `${key} = ${name}`;
-		}
-		if(localStorage.getItem(key) !== undefined && localStorage.getItem(key) !== null && localStorage.getItem(key) !== ""){
-			document.cookie = `${key} = ${name}`;
 		}
 	}
 }
 
 localStorageToCookies();
-
-
-
-console.log(document.cookie);
-
 
 
