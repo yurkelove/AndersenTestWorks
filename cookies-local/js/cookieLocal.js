@@ -6,6 +6,7 @@
 	document.cookie = "City = Chernihiv;"
 	document.cookie = "Date = " + date;
 	document.cookie = "Company = Andersen;"
+	document.cookie = "Greet = Hello,today is monday"
 	
 	
 	
@@ -23,8 +24,8 @@ function cookiesToLocalStorage(){
 		let keyCookie = cookieSingle.substring(0,symbol);
 		let valueCookie = cookieSingle.substring(symbol+1);
 		valueCookie = decodeURIComponent(valueCookie);
-		// localStorage.setItem(keyCookie,valueCookie);
-		if(localStorage.getItem(keyCookie) !== undefined && localStorage.getItem(keyCookie) !== null){
+		let lGet = localStorage.getItem(keyCookie);
+		if(lGet === undefined || lGet === null){
 			localStorage.setItem(keyCookie,valueCookie);
 		}
 
@@ -58,4 +59,4 @@ function localStorageToCookies(){
 
 localStorageToCookies();
 
-
+console.log(document.cookie);
