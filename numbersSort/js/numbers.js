@@ -37,10 +37,10 @@ function numbersSort(){
             value: valute[key]
         };
 
-        var table = document.getElementById("myTable");
-        var row = table.insertRow(key);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
+        let table = document.getElementById("myTable");
+        let row = table.insertRow(key);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
 
         cell1.innerHTML = tableView.key;
         cell2.innerHTML = tableView.value;
