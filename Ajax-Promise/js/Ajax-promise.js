@@ -29,11 +29,7 @@ let startChain = Promise.resolve();
 const results = [];
 
 siteUrls.forEach(url => {
- startChain
-  .then(() => fetch(url))
-  .then(() => fetch(url))
-  .then(() => fetch(url))
-  .then(() => fetch(url))
+ startChain = startChain
   .then(() => fetch(url))
   .then(result => {
     results.push(result);
