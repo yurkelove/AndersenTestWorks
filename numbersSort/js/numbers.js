@@ -2,26 +2,22 @@
 
 function numbersSort(){
 
-    const diapason = Math.floor(Math.random() * (60 - 40)) + 40;
-    const result = Array.apply(null, Array(diapason)).map(function(){ 
-        const number = Math.random() * 100 % 100;
-        const fixed = number.toFixed(2);
-        return Number(fixed);
-        // Преобразовать в число
-    })
-
+    const arrayLength = Math.floor(Math.random() * (60 - 40)) + 40;
+    
+    const result = [...Array(arrayLength)].map(() => {
+        const number = Math.random() * 100;
+        return Math.round(number*100)/100;
+    });
+          
     const sortNumbers = result.sort((a,b) => a - b);
 
-    const filtredNumbers = sortNumbers.filter(number => number >= 30 );
+    const filtredNumbers = sortNumbers.filter(number => number >= 30);
 
-    const summ = filtredNumbers.reduce((a,b) => a + b ,0);
+    const summ = filtredNumbers.reduce((a,b) => a + b, 0);
+    
+    const prices = filtredNumbers.map(num => `${num} грн`);
 
-
-    const valute = filtredNumbers.map(function(num){
-        return `${num} ${`грн`}` ;//Использовать шаблоной строки
-    })
-
-    valute.forEach(function(price,index) { 
+    prices.forEach((price,index) => { 
         
         const table = document.getElementById("myTable");
         const row = table.insertRow(index);
@@ -31,15 +27,9 @@ function numbersSort(){
         cell1.innerHTML = index;
         cell2.innerHTML = price;
         const total = document.getElementById('total__summ');
-        total.innerHTML = summ.toFixed(2); 
+        total.innerHTML = Math.round(summ*100)/100;  
 
     });
-
-
-
-
-   
-
 }
 
 numbersSort();
