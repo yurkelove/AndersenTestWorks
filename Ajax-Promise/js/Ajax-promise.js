@@ -13,29 +13,49 @@ const siteUrls = [
   mikkyMouse,
   bugsBunny
 ] 
+
 const fetchUrls = url => fetch(url,{credentials: 'include'}).then(urls => urls.text());
+const promise_all = siteUrls.map(fetchUrls);
+const promise_race = siteUrls.map(fetchUrls);
 
-const promiseAll = siteUrls.map(fetchUrls);
-  Promise.all(promiseAll).then(results => {
-      console.log(results);
-});
+const promiseAll = function(){
+        const returnAll = Promise.all(promise_all).then(results => {
+              console.log(results); 
+        },error => {
+                console.log(error)
+        });
+        return returnAll;
+}
 
-const promiseRace = siteUrls.map(fetchUrls);
-  Promise.race(promiseRace).then(results => {
-    console.log(results);
-});
+       
+const promiseRace = function(){
+        const returnRace = Promise.race(promise_race).then(results => {
+                console.log( results );
+        },error => {
+                console.log(error);
+        });
+        return returnRace;      
+}
 
-let startChain = Promise.resolve();
-const results = [];
 
-siteUrls.forEach(url => {
- startChain = startChain
-  .then(() => fetch(url))
-  .then(result => {
-    results.push(result);
-  });
-});
+const promiseChain = function(){
+        let startChain = Promise.resolve();
+        siteUrls.forEach(url => {
+        startChain = startChain
+        .then(() => fetch(url))
+        .then(results => {
+                console.log(results);
+        },error => {
+                console.log(error);
+        })
+        });
+}
 
-startChain.then(() => {
-  console.log(results);
-})
+
+
+promiseAll() 
+        .then(promiseRace)
+        .then(promiseChain)
+      
+
+
