@@ -1,4 +1,4 @@
 # игнорировать все файлы в каталоге
-.vscode
-.node_modules
-.idea
+/node_modules
+/.vscode
+/.idea
