@@ -2,12 +2,12 @@ const a = [17, 1, 3, 0, 4, 9];
 const b = [1, 3, 4, 5, 6, 7];
 
 
-
 function difference(massOne, massTwo) {
-		return newMass = massOne.reduce(function(item){
-				return massTwo.includes(item);
-		});
+  return massOne.reduce(function (previousValue,currentValue,currentIndex,array1){
+
+  });
 }
+
 
 console.log(difference(a, b));
 
@@ -46,6 +46,4 @@ function intersection(massOne, massTwo) {
 }
 
 
-
 console.log(intersection(firstMass, secondMass));
-
