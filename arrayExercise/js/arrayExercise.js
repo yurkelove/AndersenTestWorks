@@ -3,9 +3,12 @@ const b = [1, 3, 4, 5, 6, 7];
 
 
 function difference(massOne, massTwo) {
-  return massOne.reduce(function (previousValue,currentValue,currentIndex,array1){
-
-  });
+  return massOne.reduce((result, current) => {
+    if (!massTwo.includes(current)) {
+      result.push(current);
+    }
+    return result;
+  }, []);
 }
 
 
@@ -13,36 +16,28 @@ console.log(difference(a, b));
 
 
 function union(massOne, massTwo) {
-  const newMass = [];
-  massOne.forEach((num) => {
-    if (massTwo.indexOf(num) !== -1) {
-      newMass.push(num);
+  return massOne.reduce((result, current) => {
+    if (massTwo.includes(current)) {
+      result.push(current);
     }
-  });
-  return newMass;
+    return result;
+  }, []);
 }
 
 console.log(union(a, b));
 
 
-const firstMass = ['1','3','b',4,'k','d','p',6,6,6];
-const secondMass = ['1',3,'b',4,'k','p',6,12,5,'o'];
+const firstMass = ['1', '3', 'b', 4, 'k', 'd', 'p', 6, 6, 6, 6, 7, 31, 3, 5];
+const secondMass = ['1', 3, 'b', 4, 'k', 'p', 6, 12, 5, 'o'];
 
 
 function intersection(massOne, massTwo) {
-  const newMass = [];
-  massOne.forEach((num) => {
-    if (massTwo.indexOf(num) !== -1) {
-      newMass.push(num);
+  return massOne.reduce((result, current) => {
+    if (massTwo.includes(current)) {
+      result.push(current);
     }
-  });
-  // value - значение элемента массива. index - числовой индекс, elem - требуемый элемент
-  const unique = newMass.filter((value,index,elem) => elem.indexOf(value) === index);
-  // Set позволяют вам сохранять уникальные значения любого типа
-  let uniqueItems = Array.from(new Set(newMass));
-  console.log(uniqueItems);
-
-  return unique;
+    return result.filter((value, index, elem) => elem.indexOf(value) === index);
+  }, []);
 }
 
 
