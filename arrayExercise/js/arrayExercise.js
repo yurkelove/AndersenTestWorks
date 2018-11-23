@@ -1,20 +1,18 @@
 const a = [17, 1, 3, 0, 4, 9];
 const b = [1, 3, 4, 5, 6, 7];
 
-function first(massOne, massTwo) {
-  const newMass = [];
-  massOne.forEach((num) => {
-    if (massTwo.indexOf(num) === -1) {
-      newMass.push(num);
-    }
-  });
-  return newMass;
+
+
+function difference(massOne, massTwo) {
+		return newMass = massOne.reduce(function(item){
+				return massTwo.includes(item);
+		});
 }
 
-console.log(first(a, b));
+console.log(difference(a, b));
 
 
-function second(massOne, massTwo) {
+function union(massOne, massTwo) {
   const newMass = [];
   massOne.forEach((num) => {
     if (massTwo.indexOf(num) !== -1) {
@@ -24,14 +22,14 @@ function second(massOne, massTwo) {
   return newMass;
 }
 
-console.log(second(a, b));
+console.log(union(a, b));
 
 
 const firstMass = ['1','3','b',4,'k','d','p',6,6,6];
 const secondMass = ['1',3,'b',4,'k','p',6,12,5,'o'];
 
 
-function third(massOne, massTwo) {
+function intersection(massOne, massTwo) {
   const newMass = [];
   massOne.forEach((num) => {
     if (massTwo.indexOf(num) !== -1) {
@@ -47,5 +45,7 @@ function third(massOne, massTwo) {
   return unique;
 }
 
-console.log(third(firstMass, secondMass));
+
+
+console.log(intersection(firstMass, secondMass));
 
