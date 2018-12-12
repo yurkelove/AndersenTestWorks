@@ -9,17 +9,9 @@ for (var i = 0; i < 10; i++) {
   })(i);
 }
 
-// добавил аргумент k чтобы изменить лексическое окружение и скрыть k  из цикла
-for (var i = 0; i < 10; i++) { 
-  setTimeout(function ( k ) { 
-    console.log('expml' + k ); 
-  }( i ), 1000); 
-}
-
-
 // Если используем let то при каждом проходе цыкла - создает свою переменную i
-for(var i = 0; i < 10; i++){
-    let p = setTimeout(function(i){
-      console.log('Работает через let --- ' + p);
-    },2000)
-}
+for(let i = 0; i < 10; i++){
+    setTimeout(function(){
+      console.log(i);
+    },4000)
+} 
