@@ -1,45 +1,33 @@
 function sorted(a,b){
    var weigth_a;
    var weigth_b;
-   var IS_ARRAY_A = a instanceof Array;
-   var IS_ARRAY_B = b instanceof Array;
-   var NUMBER = "number";
-   var STRING = "string";
-   var OBJECT = "object";
-   switch(typeof a){
-       case NUMBER : 
-        weigth_a = 1;
-        break;
-       case STRING : 
+
+   
+   if(typeof a === 'number'){
+    weigth_a = 1;
+    }else if(typeof a === 'string'){
         weigth_a = 2;
-        break;
-       case OBJECT && typeof a !== null : 
+    }else if(typeof a === 'object' && typeof a !== null){
         weigth_a = 3;
-        break;
-       case IS_ARRAY_A:
+    }else if(a instanceof Array){
         weigth_a = 4;
-        break;
-       default: 
+    }else{
         weigth_a = 5;
-   }
-
-   switch(typeof b){
-    case NUMBER : 
-     weigth_b = 1;
-     break;
-    case STRING : 
-     weigth_b = 2;
-     break;
-    case OBJECT && typeof a !== null : 
-     weigth_b = 3;
-     break;
-    case IS_ARRAY_B:
-     weigth_b = 4;
-     break;
-    default: 
-     weigth_a = 5;
-}
-  
-    return  weigth_b -  weigth_a;   
+    }
+   
+   if(typeof b === 'number'){
+    weigth_b = 1;
+    }else if(typeof b === 'string'){
+        weigth_b = 2;
+    }else if(typeof b === 'object' && typeof b !== null){
+        weigth_b = 3;
+    }else if(b instanceof Array){
+        weigth_b = 4;
+    }else{
+        weigth_b = 5;
+    }
+    return  weigth_a -  weigth_b;   
 }
 
+var mass = ['Fa','Fafa',["rwra",1,"s"],'F',1,2,3,4,6,'gag','wrw',[12,3,5],{id:1,title:2},{id:2,title:2},12,{name:'Yura'},[31,45,67]];
+console.log(mass.sort(sorted));
