@@ -1,33 +1,28 @@
 function sorted(a,b){
-   var weigth_a;
-   var weigth_b;
+   var weight_a;
+   var weight_b;
 
-   
-   if(typeof a === 'number'){
-    weigth_a = 1;
-    }else if(typeof a === 'string'){
-        weigth_a = 2;
-    }else if(typeof a === 'object' && typeof a !== null){
-        weigth_a = 3;
-    }else if(a instanceof Array){
-        weigth_a = 4;
-    }else{
-        weigth_a = 5;
-    }
-   
-   if(typeof b === 'number'){
-    weigth_b = 1;
-    }else if(typeof b === 'string'){
-        weigth_b = 2;
-    }else if(typeof b === 'object' && typeof b !== null){
-        weigth_b = 3;
-    }else if(b instanceof Array){
-        weigth_b = 4;
-    }else{
-        weigth_b = 5;
-    }
-    return  weigth_a -  weigth_b;   
+    var sortA = sortType(a,weight_a);
+    var sortB = sortType(b,weight_b);
+
+    return  sortA -  sortB;   
 }
 
-var mass = ['Fa','Fafa',["rwra",1,"s"],'F',1,2,3,4,6,'gag','wrw',[12,3,5],{id:1,title:2},{id:2,title:2},12,{name:'Yura'},[31,45,67]];
+function sortType(arg,vr){
+    if(typeof arg === 'number'){
+            vr = 1;
+        }else if(typeof arg === 'string'){
+            vr = 2;
+        }else if(arg instanceof Array){
+            vr = 3;
+        }
+        else if(typeof arg === 'object' && typeof arg !== null){
+            vr = 4;
+        }else{
+            vr = 5;
+        }
+        return vr;
+}
+
+var mass = ['Fa',null,'Fafa',["rwra",1,"s"],'F',1,2,null,3,4,6,'gag','wrw',[12,3,5],{id:1,title:2},{id:2,title:2},undefined,12,{name:'Yura'},[31,45,67]];
 console.log(mass.sort(sorted));
